@@ -5,7 +5,6 @@ Coworking::Application.routes.draw do
 
   devise_for :users
   
-  match '/' => 'users#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
