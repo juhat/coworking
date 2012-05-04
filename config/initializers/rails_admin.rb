@@ -9,6 +9,10 @@ RailsAdmin.config do |config|
 
   config.current_user_method { current_user } # auto-generated
 
+  config.authorize_with do 
+      redirect_to root_path unless current_user.try(:admin?)
+    end
+
   # If you want to track changes on your models:
   # config.audit_with :history, User
 
