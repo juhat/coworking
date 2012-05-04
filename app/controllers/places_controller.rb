@@ -2,11 +2,10 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @places = Place.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @places }
+    if params[:search].present?
+      @places = Place.near(params[:search], 50, :order => :distance)
+    else
+      @places = Place.all
     end
   end
 
