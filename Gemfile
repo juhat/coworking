@@ -6,7 +6,8 @@ gem 'rails', '3.2.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem 'rails_admin'
+gem 'devise'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,3 +37,6 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+
+gem "devise"
