@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Address:</b>
+  <%= @place.address %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @place.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @place.longitude %>
+</p>
+
+<h3>Nearby locations</h3>
+<ul>
+<% for place in @place.nearbys(10) %>
+  <li><%= link_to place.address, place %> (<%= place.distance.round(2) %> miles)</li>
+<% end %>
+</ul>
+
+
+<%= link_to 'Edit', edit_place_path(@place) %> |
+<%= link_to 'Back', places_path %>
