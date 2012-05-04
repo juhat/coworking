@@ -1,4 +1,6 @@
 Coworking::Application.routes.draw do
+  resources :places
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   get "static_pages/home"
   root to: "static_pages#home"
