@@ -43,3 +43,4 @@ gem 'geocoder'
 
 
 gem "devise"
+gem "pg"
