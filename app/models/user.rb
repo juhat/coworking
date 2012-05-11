@@ -9,4 +9,20 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   devise :omniauthable
+
+  def self.find_for_twitter_oauth(access_token, signed_in_resource=nil)
+	data = access_token.extra.raw_info
+	if user = self.find_by_email(data.email)
+	  user
+	else # Create a user with a stub password. 
+	  self.create!(:email => data.email, :password => Devise.friendly_token[0,20]) 
+	end
+  end
+	def self.new_with_session(params, session)
+	    super.tap do |user|
+	      if data = session["devise.twitter_data"] && session["devise.twitter_data"]["extra"]["raw_info"]
+	        user.email = data["email"]
+	    end
+	end
+  end
 end
