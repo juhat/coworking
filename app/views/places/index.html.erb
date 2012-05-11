@@ -1,6 +1,6 @@
 <h1>Listing places</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Address</th>
     <th>Latitude</th>
@@ -15,20 +15,21 @@
     <td><%= place.address %></td>
     <td><%= place.latitude %></td>
     <td><%= place.longitude %></td>
-    <td><%= link_to 'Show', place %></td>
-    <td><%= link_to 'Edit', edit_place_path(place) %></td>
-    <td><%= link_to 'Destroy', place, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', place, class: "btn btn-mini"  %></td>
+    <td><%= link_to 'Edit', edit_place_path(place), class: "btn btn-mini" %></td>
+    <td><%= link_to 'Destroy', place, confirm: 'Are you sure?', method: :delete, class: "btn btn-mini btn-danger"  %></td>
   </tr>
 <% end %>
 </table>
 <%= form_tag places_path, :method => :get do %>
   <p>
     <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search Near", :name => nil %>
+    <%= submit_tag "Search Near", :name => nil,
+        :class => "btn btn-primary" %>
   </p>
 <% end %>
 
 <br />
 
-<%= link_to 'New Place', new_place_path %>
+<%= link_to 'New Place', new_place_path, class: "btn btn-primary"  %>
  <br><br><br><%= @current_place %>
