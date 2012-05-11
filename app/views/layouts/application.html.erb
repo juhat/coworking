@@ -18,6 +18,7 @@
   <% else %>
     <%= link_to "Sign up", new_user_registration_path %> or
     <%= link_to "Sign in", new_user_session_path %>
+    <%= link_to "Connect with Twitter", user_omniauth_authorize_path(:twitter) %>
   <% end %>
 </div>
 
