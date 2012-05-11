@@ -2,11 +2,15 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
+    @current_place = ""
     if params[:search].present?
-      @places = Place.near(params[:search], 50, :order => :distance)
+      @current_place = params[:search]
     else
-      @places = Place.near(request.location.city, 50, :order => :distance)
+      @current_place = "#{request.location.city} #{request.location.country unless request.location.country == 'Reserved'}"
     end
+    @current_place = "Budapest, Hungary" if @current_place.blank? 
+    
+    @places = Place.near(@current_place, 200, :order => :distance)
   end
 
   # GET /places/1
