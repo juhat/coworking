@@ -220,4 +220,7 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+
+  require "omniauth-twitter"
+  config.omniauth :twitter, "NGqf5JiCAOyrvIf87f47iA", "z9ffBIiGkzrUgqlYLWZoqM1OAMFD76QqesDnL1eItk"
 end
