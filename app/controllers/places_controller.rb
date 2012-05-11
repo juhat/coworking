@@ -1,4 +1,6 @@
 class PlacesController < ApplicationController
+  before_filter :signed_in_user, only: [ :new, :edit, :create,
+                                         :update, :destroy ]
   # GET /places
   # GET /places.json
   def index
@@ -8,8 +10,8 @@ class PlacesController < ApplicationController
     else
       @current_place = "#{request.location.city} #{request.location.country unless request.location.country == 'Reserved'}"
     end
-    @current_place = "Budapest, Hungary" if @current_place.blank? 
-    
+    @current_place = "Budapest, Hungary" if @current_place.blank?
+
     @places = Place.near(@current_place, 200, :order => :distance)
   end
 
@@ -83,4 +85,12 @@ class PlacesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def signed_in_user
+      if !user_signed_in?
+        flash[:error] = "You must sign in to do it!"
+        redirect_to new_user_session_path
+      end
+    end
 end
