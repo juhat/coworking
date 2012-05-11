@@ -222,5 +222,6 @@ Devise.setup do |config|
   # end
 
   require "omniauth-twitter"
-  config.omniauth :twitter, "NGqf5JiCAOyrvIf87f47iA", "z9ffBIiGkzrUgqlYLWZoqM1OAMFD76QqesDnL1eItk"
+  config.omniauth :twitter, "NGqf5JiCAOyrvIf87f47iA", "z9ffBIiGkzrUgqlYLWZoqM1OAMFD76QqesDnL1eItk",
+    {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}} 
 end
