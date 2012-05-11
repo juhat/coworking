@@ -8,10 +8,8 @@
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
 
-<div id="user_nav">
+<!--><div id="user_nav">
   <% if user_signed_in? %>
     Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
@@ -20,16 +18,36 @@
     <%= link_to "Sign in", new_user_session_path %>
     <%= link_to "Connect with Twitter", user_omniauth_authorize_path(:twitter) %>
   <% end %>
-</div>
+</div><-->
 
-<div class="container">
-  <div class="row">
-    <div class="span9"><%= yield %></div>
-    <div class="span3">
-      <h2>About Us</h2>
-      <p>Coworking app on ITK</p>
+<header class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <nav>
+        <ul class="nav pull-right">
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Other Link", '#' %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "Sign out", destroy_user_session_path,
+                method: "delete" %></li>
+          <% else %>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <li><%= link_to "Sign in", new_user_session_path %></li>
+            <li><%= link_to "Connect with Twitter", user_omniauth_authorize_path(:twitter) %></li>
+          <% end %>
+        </ul>
+      </nav>
     </div>
   </div>
+</header>
+
+
+<div class="container">
+  <% flash.each do |key,value| %>
+    <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+  <% end %>
+
+  <%= yield %>
 </div>
 
 </body>

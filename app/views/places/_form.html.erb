@@ -1,4 +1,4 @@
-<%= form_for(@place) do |f| %>
+<%= simple_form_for(@place) do |f| %>
   <% if @place.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
@@ -12,16 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
+    <%= f.input :address %>
   </div>
   <div class="field">
-    <%= f.label :latitude %><br />
-    <%= f.text_field :latitude %>
+    <%= f.input :latitude %>
   </div>
   <div class="field">
-    <%= f.label :longitude %><br />
-    <%= f.text_field :longitude %>
+    <%= f.input :longitude %>
   </div>
   <div class="actions">
     <%= f.submit %>
